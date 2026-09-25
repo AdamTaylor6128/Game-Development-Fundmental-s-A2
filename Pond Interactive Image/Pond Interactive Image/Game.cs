@@ -13,10 +13,19 @@ namespace MohawkGame2D
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
+        int rndPos;
+        int arcShift;
+        int opacity = 255;
+        int wavePos;
+        int colRed;
+        int colGreen;
         public void Setup()
         {
             Window.SetTitle("Lily Pond");
             Window.SetSize(400, 400);
+            //Creates a random lily pad position each time
+            rndPos = Random.Integer(200, 400);
+            Window.TargetFPS = 60;
         }
 
         /// <summary>
@@ -25,28 +34,63 @@ namespace MohawkGame2D
         public void Update()
         {
             Window.ClearBackground(67, 49, 224);
-            
-            
-            //Lily Pad Drawings all postive away from mouse position
-            Draw.SetFillColor(Color.Green);
-            Draw.SetLineSize(5);
-            Draw.SetLineColor(49, 224, 52);
-            Draw.Arc(310+Input.GetMouseX(), 110+Input.GetMouseY(), 140, 140, 0, 300);
-            Draw.Line(310+Input.GetMouseX(), 110+Input.GetMouseY(), 260+Input.GetMouseX(), 150+Input.GetMouseY());
-            Draw.Arc(70 + Input.GetMouseX(), 330 + Input.GetMouseY(), 80, 80, 180, -90);
-            Draw.Line(70 + Input.GetMouseX(), 330 + Input.GetMouseY(), 90 + Input.GetMouseX(), 350 + Input.GetMouseY());
-            Draw.Arc(330 + Input.GetMouseX(), 370 + Input.GetMouseY(), 100, 100, 90, 400 );
-            Draw.Line(310 + Input.GetMouseX(), 330 + Input.GetMouseY(), 330 + Input.GetMouseX(), 370 + Input.GetMouseY());
-            Draw.SetFillColor(67, 49, 224);
-            Draw.SetLineSize(5);
-            Draw.SetLineColor(49, 224, 52);
-            Draw.PolyLine(int[60, 70, 80, 90, 100], int[140, 130, 120, 130, 140]);
-            
-            
+            //Wave Drawings
+            if(opacity <= 0)
+            {
+                //Resets the waves and changes positioning and color
+                opacity = 255;
+                wavePos = Random.Integer(-50, 50);
+                colGreen = Random.Integer(-50, 100);
+                colRed = Random.Integer(-20, 100);
 
+            }
+            else
+            {
+              //Draws the waves
+              Draw.SetLineSize(10);
+              Draw.SetFillColor(67, 49, 224, opacity);
+              Draw.SetLineColor(66+colRed, 155+colGreen, 245, opacity);
+              Draw.Arc(200+wavePos, 200+wavePos, 100, 66, 180, 360, false);
+                Draw.Arc(70 + wavePos, 200 + wavePos, 100, 66, 180, 360, false);
+                Draw.Arc(270 + wavePos, 100 + wavePos, 100, 66, 180, 360, false);
+                Draw.Arc(150 + wavePos, 150 + wavePos, 100, 66, 180, 360, false);
+                Draw.Arc(220 + wavePos, 300 + wavePos, 100, 66, 180, 360, false);
+                Draw.Arc(320 + wavePos, 225 + wavePos, 100, 66, 180, 360, false);
+                Draw.Arc(180 + wavePos, 70 + wavePos, 100, 66, 180, 360, false);
+                Draw.Arc(200 + wavePos, 200 + wavePos, 100, 66, 180, 360, false);
+                Draw.Arc(120 + wavePos, 325 + wavePos, 100, 66, 180, 360, false);
+                opacity -= 2;
+            }
             
             
-            
+            //Lily Pad Drawings
+            Draw.SetFillColor(78, 230, 64);
+            Draw.SetLineSize(5);
+            Draw.SetLineColor(49, 224, 52);
+            Draw.Arc((10 + rndPos) + Input.GetMouseX(), (-110 + rndPos) + Input.GetMouseY(), 140, 140, 0, 300);
+
+            Draw.Arc(-270 + rndPos + Input.GetMouseX(), 130 + rndPos + Input.GetMouseY(), 80, 80, 180, -90);
+
+            Draw.Arc(130 + rndPos + Input.GetMouseX(), 170 + rndPos + Input.GetMouseY(), 100, 100, 90, 400);
+
+            Draw.Arc(310 - rndPos + Input.GetMouseX(), 110 - rndPos + Input.GetMouseY(), 140, 140, 0, 300);
+
+            Draw.Arc(70 - rndPos + Input.GetMouseX(), 330 - rndPos + Input.GetMouseY(), 80, 80, 180, -90);
+
+            Draw.Arc((330 - rndPos) + Input.GetMouseX(), (370 - rndPos) + Input.GetMouseY(), 100, 100, 90, 400);
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 
