@@ -16,7 +16,8 @@ namespace MohawkGame2D
         int rndPos;
         int arcShift;
         int opacity = 255;
-        int wavePos;
+        int wavePosX;
+        int wavePosY;
         int colRed;
         int colGreen;
         public void Setup()
@@ -39,7 +40,8 @@ namespace MohawkGame2D
             {
                 //Resets the waves and changes positioning and color
                 opacity = 255;
-                wavePos = Random.Integer(-50, 50);
+                wavePosX = Random.Integer(-50, 50);
+                wavePosY = Random.Integer(-50, 50);
                 colGreen = Random.Integer(-50, 100);
                 colRed = Random.Integer(-20, 100);
 
@@ -50,15 +52,14 @@ namespace MohawkGame2D
               Draw.SetLineSize(10);
               Draw.SetFillColor(67, 49, 224, opacity);
               Draw.SetLineColor(66+colRed, 155+colGreen, 245, opacity);
-              Draw.Arc(200+wavePos, 200+wavePos, 100, 66, 180, 360, false);
-                Draw.Arc(70 + wavePos, 200 + wavePos, 100, 66, 180, 360, false);
-                Draw.Arc(270 + wavePos, 100 + wavePos, 100, 66, 180, 360, false);
-                Draw.Arc(150 + wavePos, 150 + wavePos, 100, 66, 180, 360, false);
-                Draw.Arc(220 + wavePos, 300 + wavePos, 100, 66, 180, 360, false);
-                Draw.Arc(320 + wavePos, 225 + wavePos, 100, 66, 180, 360, false);
-                Draw.Arc(180 + wavePos, 70 + wavePos, 100, 66, 180, 360, false);
-                Draw.Arc(200 + wavePos, 200 + wavePos, 100, 66, 180, 360, false);
-                Draw.Arc(120 + wavePos, 325 + wavePos, 100, 66, 180, 360, false);
+              Draw.Arc(200+wavePosX, 200 + wavePosY, 100, 66, 180, 360, false);
+                Draw.Arc(270 + wavePosX, 100 + wavePosY, 100, 66, 180, 360, false);
+                Draw.Arc(150 + wavePosX, 150 + wavePosY, 100, 66, 180, 360, false);
+                Draw.Arc(220 + wavePosX, 300 + wavePosY, 100, 66, 180, 360, false);
+                Draw.Arc(320 + wavePosX, 225 + wavePosY, 100, 66, 180, 360, false);
+                Draw.Arc(180 + wavePosX, 70 + wavePosY, 100, 66, 180, 360, false);
+                Draw.Arc(200 + wavePosX, 200 + wavePosY, 100, 66, 180, 360, false);
+                Draw.Arc(120 + wavePosX, 325 + wavePosY, 100, 66, 180, 360, false);
                 opacity -= 2;
             }
             
